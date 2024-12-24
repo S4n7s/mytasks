@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мои задачи</title>
+</head>
+<body>
+    <h1>Мои задачи</h1>
+    <a href="{% url 'home' %}">На главную</a>
+
+    <h2>Активные задачи ({{ active_count }})</h2>
+    <ul>
+        {% for task in active_tasks %}
+            <li>{{ task.task_name }} — Напоминание: {{ task.reminder_time }}</li>
+        {% empty %}
+            <p>Нет активных задач.</p>
+        {% endfor %}
+    </ul>
+
+    <h2>Просроченные задачи ({{ overdue_count }})</h2>
+    <ul>
+        {% for task in overdue_tasks %}
+            <li>{{ task.task_name }} — Напоминание: {{ task.reminder_time }}</li>
+        {% empty %}
+            <p>Нет просроченных задач.</p>
+        {% endfor %}
+    </ul>
+
+    <h2>Архив ({{ archived_count }})</h2>
+    <ul>
+        {% for task in archived_tasks %}
+            <li>{{ task.task_name }} — Завершена: {{ task.updated_at }}</li>
+        {% empty %}
+            <p>Архив пуст.</p>
+        {% endfor %}
+    </ul>
+</body>
+</html>

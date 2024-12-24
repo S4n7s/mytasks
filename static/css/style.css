@@ -1,0 +1,41 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    color: var(--tg-theme-text-color);
+    background: var(--tg-theme-bg-color);
+}
+
+.Main {
+    width: 100%;
+    padding: 25px;
+    text-align: center;
+
+}
+
+h1 {
+    margin-top: 40px;
+    margin-bottom: 10px;
+}
+
+img {
+    width: 70px;
+    margin: 30px auto;
+}
+
+.btn {
+    border: 0;
+    border-radius: 5px;
+    margin-top: 5px;
+    height: 30px;
+    width: 150px;
+    font-style: 20px;
+    font-weight: 500;
+    align-content: center;
+    cursor: pointer;
+    color: var(--tg-theme-button-text-color);
+    background: var(--tg-theme-button-color);
+}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="{% static 'js/telegram-auth.js' %}"></script>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <title>Твой личный секретарь!</title>
+</head>
+<body>
+    {% if request.user.is_authenticated %}
+        <h2>Привет, {{ request.user.username }}</h2>
+        {% if tasks %}
+            <ul>
+                {% for task in tasks %}
+                    <li>{{ task.task_name }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>У вас нет задач.</p>
+        {% endif %}
+    {% else %}
+        <p>Вы не авторизованы. Войдите через Telegram Web App или на странице входа.</p>
+    {% endif %}
+    <div class="Main">
+        <h1>Главное меню</h1>
+        <button class="btn" onclick="window.location.href='{% url "reminders_task" %}'">
+            Мои задачи (Активные: {{ active_count }}, Просроченные: {{ overdue_count }}, Архив: {{ archived_count }})
+        </button>
+
+        <p></p>
+        <button class="btn" onclick="window.location.href='{% url "reminders_task" %}'">Мои задачи</button><br>
+        <button class="btn" onclick="window.location.href='{% url "create_task" %}'">Создать задачу</button><br>
+        <button class="btn" onclick="window.location.href='{% url "edit_task" %}'">Обновить задачу</button><br>
+        <button class="btn" onclick="window.location.href='{% url "delete_task" %}'">Удалить задачу</button>
+    </div>
+</body>
+</html>
